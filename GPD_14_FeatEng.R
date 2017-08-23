@@ -155,3 +155,12 @@ gpd14nomiss$tot.trust.bins <- cut(gpd14nomiss$tot.trust.idx, c(0, 1, 6, 15), lab
 table(gpd14nomiss$tot.trust.bins)
 
 confusionMatrix(gpd14nomiss$tot.trust.cl, gpd14nomiss$tot.trust.bins)
+
+##binary DV
+
+gpd14nomiss$tot.aversion.binary <- cut(gpd14nomiss$tot.aversion.idx, c(0,10,14), right = F, levels(0:1))
+table(gpd14nomiss$tot.aversion.binary, useNA = "always")
+
+gpd14nomiss$tot.trust.binary <- cut(gpd14nomiss$tot.trust.idx, c(0,8,16), right = F, levels(0:1))
+table(gpd14nomiss$tot.trust.binary, useNA = "always")
+
