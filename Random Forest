@@ -30,3 +30,12 @@ confusionMatrix(y_pred14.3, test14.2$tot.trust.binary) #90%, 93%, 63%
 
 confusionMatrix(y_pred14.4, test14.2$tot.aversion.binary) #91%, 94%, 84%
 
+#ROC (iterate fro all models!)
+library(rPOC)
+
+roc14.4 <- plot.roc(test14.2$tot.aversion.binary, ordered(y_pred14.4),
+                   main="specificity/sensitivity CI", percent=TRUE,
+                   ci=TRUE, of="se", 
+                   specificities=seq(0, 100, 5), 
+                   ci.type="shape", ci.col="#1c61b6AA",
+                   print.auc = T)
