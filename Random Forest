@@ -1,0 +1,32 @@
+#Random Forest Classification
+
+# Fitting Rndm Forest to the Training set
+
+library(randomForest)
+rFor14.pca1.1 <- randomForest(x = training14.1[-1], y = training14.1$tot.trust.binary, ntree = 10)
+
+rFor14.pca1.2 <- randomForest(x = training14.1[-2], y = training14.1$tot.aversion.binary, ntree = 10)
+
+rFor14.pca2.1 <- randomForest(x = training14.2[-1], y = training14.2$tot.trust.binary, ntree = 10)
+
+rFor14.pca2.2 <- randomForest(x = training14.2[-2], y = training14.2$tot.aversion.binary, ntree = 10)
+
+# Predicting the Test set results
+y_pred14.1 <- predict(rFor14.pca1.1, newdata = test14.1[-1])
+
+y_pred14.2 <- predict(rFor14.pca1.2, newdata = test14.1[-2])
+
+y_pred14.3 <- predict(rFor14.pca2.1, newdata = test14.2[-1])
+
+y_pred14.4 <- predict(rFor14.pca2.2, newdata = test14.2[-2])
+
+# Making the Confusion Matrix
+library(caret)
+confusionMatrix(y_pred14.1, test14.1$tot.trust.binary) #89%, 98%, 30% 
+
+confusionMatrix(y_pred14.2, test14.1$tot.aversion.binary) #74%, 92%, 44%
+
+confusionMatrix(y_pred14.3, test14.2$tot.trust.binary) #90%, 93%, 63%
+
+confusionMatrix(y_pred14.4, test14.2$tot.aversion.binary) #91%, 94%, 84%
+
